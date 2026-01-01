@@ -71,6 +71,43 @@ st.markdown("""
         padding: 15px !important;
     }
     
+    /* Mobile-friendly table styling */
+    [data-testid="stDataFrame"] {
+        font-size: 13px !important;
+    }
+    
+    [data-testid="stDataFrame"] table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+    }
+    
+    [data-testid="stDataFrame"] th {
+        background-color: #2e8b57 !important;
+        color: white !important;
+        padding: 10px !important;
+        text-align: left !important;
+        font-weight: bold !important;
+        border: 1px solid #1d5e3f !important;
+    }
+    
+    [data-testid="stDataFrame"] td {
+        padding: 10px !important;
+        border: 1px solid #ddd !important;
+        text-align: left !important;
+    }
+    
+    [data-testid="stDataFrame"] tr:nth-child(even) {
+        background-color: #f9f9f9 !important;
+    }
+    
+    [data-testid="stDataFrame"] tr:nth-child(odd) {
+        background-color: #ffffff !important;
+    }
+    
+    [data-testid="stDataFrame"] tr:hover {
+        background-color: #e8f5e9 !important;
+    }
+    
     /* Button styling for mobile */
     .stButton > button {
         width: 100%;
@@ -214,7 +251,7 @@ def main_interface():
         total_products = sum(len(products) for products in data["products"].values())
         st.markdown(f"**Total Products:** {total_products}")
 
-    # Right column - Product cards (mobile-friendly)
+    # Right column - Product table (mobile-friendly)
     with col_right:
         st.markdown(f"### 📊 {st.session_state.selected_category} Products")
 
@@ -222,30 +259,32 @@ def main_interface():
             products = data["products"][st.session_state.selected_category]
 
             if products:
-                # Display as expandable cards instead of table
-                for idx, (product_name, product_info) in enumerate(products.items()):
-                    product_type = "✅ 行貨 (Genuine)" if product_info.get("is_genuine", True) else "⚠️ 水貨 (Non-Genuine)"
-                    price = f"${product_info.get('price', 0):.2f}"
-                    unit = product_info.get("unit", "N/A")
-                    source = product_info.get("source", "N/A")
-                    date_added = product_info.get("date_added", "N/A")
-                    
-                    # Create expandable product card
-                    with st.expander(f"💊 {product_name} - {price}", expanded=(idx == 0)):
-                        col1, col2 = st.columns(2)
-                        
-                        with col1:
-                            st.markdown(f"**Product:** {product_name}")
-                            st.markdown(f"**Price:** {price}")
-                            st.markdown(f"**Unit:** {unit}")
-                        
-                        with col2:
-                            st.markdown(f"**Type:** {product_type}")
-                            st.markdown(f"**Source:** {source}")
-                            st.markdown(f"**Added:** {date_added}")
-                        
-                        # Divider line
-                        st.divider()
+                # Convert to DataFrame for table display
+                table_data = []
+                for product_name, product_info in products.items():
+                    table_data.append({
+                        "Product": product_name,
+                        "Price": f"${product_info.get('price', 0):.2f}",
+                        "Type": "✅ Genuine" if product_info.get("is_genuine", True) else "⚠️ Non-Genuine",
+                        "Source": product_info.get("source", "N/A"),
+                        "Unit": product_info.get("unit", "N/A")
+                    })
+
+                df = pd.DataFrame(table_data)
+
+                # Display table with mobile-friendly styling
+                st.dataframe(
+                    df,
+                    use_container_width=True,
+                    hide_index=True,
+                    column_config={
+                        "Product": st.column_config.TextColumn("Product", width="large"),
+                        "Price": st.column_config.TextColumn("Price", width="small"),
+                        "Type": st.column_config.TextColumn("Type", width="medium"),
+                        "Source": st.column_config.TextColumn("Source", width="medium"),
+                        "Unit": st.column_config.TextColumn("Unit", width="small")
+                    }
+                )
 
             else:
                 st.info(f"📭 No products found in {st.session_state.selected_category} category.")
