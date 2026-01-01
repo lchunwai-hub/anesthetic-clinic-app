@@ -168,8 +168,9 @@ st.markdown("""
 # --- Data Management ---
 DATA_FILE = "clinic_data.json"
 
+@st.cache_data(ttl=5)
 def load_data():
-    """Load clinic data from JSON file"""
+    """Load clinic data from JSON file with short cache (5 seconds)"""
     if os.path.exists(DATA_FILE):
         try:
             with open(DATA_FILE, 'r', encoding='utf-8') as f:
@@ -225,8 +226,8 @@ def main_interface():
     # Header
     st.markdown('<h1 class="main-header">💉 Anesthetic Clinic Product Catalog</h1>', unsafe_allow_html=True)
 
-    # Top bar with category selector and logout button
-    header_cols = st.columns([2, 1])
+    # Top bar with category selector, refresh and logout button
+    header_cols = st.columns([2, 0.5, 0.5])
     
     categories = ["填充", "水光", "溶脂"]
     
@@ -241,8 +242,14 @@ def main_interface():
         )
         st.session_state.selected_category = selected
     
-    # Logout button
+    # Refresh button
     with header_cols[1]:
+        if st.button("🔄", key="refresh_btn", help="Refresh data"):
+            st.cache_data.clear()
+            st.rerun()
+    
+    # Logout button
+    with header_cols[2]:
         if st.button("Logout", key="user_logout", use_container_width=True):
             st.session_state.user_logged_in = False
             st.rerun()
