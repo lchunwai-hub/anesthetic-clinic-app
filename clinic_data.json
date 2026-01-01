@@ -5,8 +5,15 @@
         "source": "SINOPHARM",
         "is_genuine": false,
         "price": 820.0,
-        "unit": "per syringe",
+        "unit": "per 支",
         "date_added": "2026-01-01 09:38"
+      },
+      "VOBELLA": {
+        "source": "SINOPHARM",
+        "is_genuine": true,
+        "price": 820.0,
+        "unit": "per 支",
+        "date_added": "2026-01-01 12:00"
       }
     },
     "水光": {
