@@ -1,0 +1,42 @@
+{
+  "products": {
+    "填充": {
+      "VOLUMA": {
+        "source": "SINOPHARM",
+        "is_genuine": false,
+        "price": 820.0,
+        "unit": "per syringe",
+        "date_added": "2026-01-01 09:38"
+      }
+    },
+    "水光": {
+      "Hyaluronic Acid Solution 5ml": {
+        "source": "Local Supplier",
+        "is_genuine": true,
+        "price": 120.0,
+        "unit": "per bottle",
+        "date_added": "2024-01-01 10:30"
+      }
+    },
+    "溶脂": {
+      "Lipodissolve Solution 10ml": {
+        "source": "Medical Supply Co",
+        "is_genuine": false,
+        "price": 85.0,
+        "unit": "per vial",
+        "date_added": "2024-01-01 10:45"
+      }
+    }
+  },
+  "sources": [
+    "Medical Supply Co",
+    "Pharma Corp",
+    "Local Supplier",
+    "Global Med",
+    "SINOPHARM"
+  ],
+  "users": {
+    "admin": "admin123",
+    "partner": "partner123"
+  }
+}
