@@ -172,9 +172,12 @@ GITHUB_RAW_URL = "https://raw.githubusercontent.com/lchunwai-hub/anesthetic-clin
 def load_data():
     """Load clinic data from GitHub (for Streamlit Cloud sync) or local file"""
     try:
-        # Try loading from GitHub first (for real-time sync)
+        # Try loading from GitHub first (for real-time sync with cache-busting)
         import urllib.request
-        with urllib.request.urlopen(GITHUB_RAW_URL) as response:
+        import time
+        # Add timestamp to prevent caching
+        cache_buster = f"?t={int(time.time())}"
+        with urllib.request.urlopen(GITHUB_RAW_URL + cache_buster) as response:
             data = json.loads(response.read().decode())
             return data
     except:
