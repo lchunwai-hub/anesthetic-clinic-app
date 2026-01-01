@@ -225,78 +225,64 @@ def main_interface():
     # Header
     st.markdown('<h1 class="main-header">💉 Anesthetic Clinic Product Catalog</h1>', unsafe_allow_html=True)
 
+    # Top bar with category icons and logout button
+    header_cols = st.columns([1, 1, 1, 1, 1])
+    
+    categories = ["填充", "水光", "溶脂"]
+    category_emojis = {"填充": "💉", "水光": "💧", "溶脂": "🔥"}
+    
+    # Category buttons with icons (compact, small)
+    for idx, category in enumerate(categories):
+        with header_cols[idx]:
+            emoji = category_emojis.get(category, "📦")
+            if st.button(f"{emoji}", key=f"user_cat_{category}", help=f"{category}"):
+                st.session_state.selected_category = category
+                st.rerun()
+    
     # Logout button
-    col1, col2, col3 = st.columns([1, 1, 1])
-    with col3:
+    with header_cols[4]:
         if st.button("Logout", key="user_logout"):
             st.session_state.user_logged_in = False
             st.rerun()
 
-    # Main layout
-    col_left, col_right = st.columns([1, 3])
+    st.markdown("---")
 
-    # Left column - Category selection
-    with col_left:
-        st.markdown("### 📁 Product Categories")
+    # Product table (full width, no side panel)
+    st.markdown(f"### 📊 {st.session_state.selected_category} Products")
 
-        categories = ["填充", "水光", "溶脂"]
-        for category in categories:
-            if st.button(f"📦 {category}",
-                        key=f"user_cat_{category}",
-                        use_container_width=True,
-                        help=f"View {category} products"):
-                st.session_state.selected_category = category
+    if st.session_state.selected_category in data["products"]:
+        products = data["products"][st.session_state.selected_category]
 
-        # Show selected category
-        st.markdown("---")
-        st.markdown(f"**Selected:** {st.session_state.selected_category}")
+        if products:
+            # Convert to DataFrame for table display
+            table_data = []
+            for product_name, product_info in products.items():
+                table_data.append({
+                    "Product Name": product_name,
+                    "Price ($)": f"{product_info.get('price', 0):.2f}",
+                    "Type": "✅ Genuine" if product_info.get("is_genuine", True) else "⚠️ Non-Genuine",
+                    "Source": product_info.get("source", "N/A")
+                })
 
-        # Show category stats
-        if st.session_state.selected_category in data["products"]:
-            products_count = len(data["products"][st.session_state.selected_category])
-            st.markdown(f"**Products:** {products_count}")
+            df = pd.DataFrame(table_data)
 
-        # Total products across all categories
-        total_products = sum(len(products) for products in data["products"].values())
-        st.markdown(f"**Total Products:** {total_products}")
+            # Display table with mobile-friendly styling (no horizontal scroll)
+            st.dataframe(
+                df,
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "Product Name": st.column_config.TextColumn("Product Name", width="medium"),
+                    "Price ($)": st.column_config.TextColumn("Price", width="small"),
+                    "Type": st.column_config.TextColumn("Type", width="small"),
+                    "Source": st.column_config.TextColumn("Source", width="small")
+                }
+            )
 
-    # Right column - Product table (mobile-friendly)
-    with col_right:
-        st.markdown(f"### 📊 {st.session_state.selected_category} Products")
-
-        if st.session_state.selected_category in data["products"]:
-            products = data["products"][st.session_state.selected_category]
-
-            if products:
-                # Convert to DataFrame for table display
-                table_data = []
-                for product_name, product_info in products.items():
-                    table_data.append({
-                        "Product Name": product_name,
-                        "Price ($)": f"{product_info.get('price', 0):.2f}",
-                        "Type": "✅ Genuine" if product_info.get("is_genuine", True) else "⚠️ Non-Genuine",
-                        "Source": product_info.get("source", "N/A")
-                    })
-
-                df = pd.DataFrame(table_data)
-
-                # Display table with mobile-friendly styling (no horizontal scroll)
-                st.dataframe(
-                    df,
-                    use_container_width=True,
-                    hide_index=True,
-                    column_config={
-                        "Product Name": st.column_config.TextColumn("Product Name", width="medium"),
-                        "Price ($)": st.column_config.TextColumn("Price", width="small"),
-                        "Type": st.column_config.TextColumn("Type", width="small"),
-                        "Source": st.column_config.TextColumn("Source", width="small")
-                    }
-                )
-
-            else:
-                st.info(f"📭 No products found in {st.session_state.selected_category} category.")
         else:
-            st.info("📭 No products available in this category.")
+            st.info(f"📭 No products found in {st.session_state.selected_category} category.")
+    else:
+        st.info("📭 No products available in this category.")
 
 # --- Main App Logic ---
 def main():
