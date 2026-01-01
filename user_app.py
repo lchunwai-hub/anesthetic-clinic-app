@@ -118,19 +118,6 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .login-container {
-        background-color: #f9f9f9;
-        padding: 30px;
-        border-radius: 10px;
-        border: 2px solid #2e8b57;
-        max-width: 400px;
-        margin: 50px auto;
-    }
-    </style>
-    """, unsafe_allow_html=True)
 
 # --- Data Management ---
 DATA_FILE = "clinic_data.json"
