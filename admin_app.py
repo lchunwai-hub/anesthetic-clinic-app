@@ -5,33 +5,78 @@ from datetime import datetime
 
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="Anesthetic Clinic Management",
+    page_title="Clinic Management",
     page_icon="💉",
-    layout="wide"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
-# --- CSS Styling ---
+# --- CSS Styling for Mobile ---
 st.markdown("""
     <style>
+    /* Mobile responsive styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
     .main-header {
-        font-size: 2.5em;
+        font-size: 1.8em;
         font-weight: bold;
         color: #1f77b4;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        padding: 10px;
     }
+    
     .product-card {
         border: 1px solid #ddd;
         border-radius: 10px;
-        padding: 15px;
-        margin: 10px 0;
+        padding: 12px;
+        margin: 8px 0;
         background-color: #f9f9f9;
     }
+    
     .admin-panel {
         background-color: #f0f8ff;
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
         border: 2px solid #1f77b4;
+        margin: 10px 0;
+    }
+    
+    /* Button styling for mobile */
+    .stButton > button {
+        width: 100%;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        margin: 5px 0 !important;
+    }
+    
+    /* Input fields */
+    .stTextInput input, .stNumberInput input, .stSelectbox select {
+        font-size: 16px !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+    }
+    
+    /* Tabs */
+    .stTabs [role="tablist"] button {
+        font-size: 14px !important;
+        padding: 10px 20px !important;
+    }
+    
+    /* Reduce margin */
+    .block-container {
+        padding: 10px !important;
+    }
+    
+    /* Better spacing */
+    h1, h2, h3 {
+        margin-top: 15px !important;
+        margin-bottom: 10px !important;
     }
     </style>
     """, unsafe_allow_html=True)

@@ -5,39 +5,118 @@ import pandas as pd
 
 # --- Page Configuration ---
 st.set_page_config(
-    page_title="Clinic Product Catalog",
+    page_title="Product Catalog",
     page_icon="💉",
-    layout="wide"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
-# --- CSS Styling ---
+# --- CSS Styling for Mobile ---
 st.markdown("""
     <style>
+    /* Mobile responsive styling */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
     .main-header {
-        font-size: 2.5em;
+        font-size: 1.8em;
         font-weight: bold;
         color: #2e8b57;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
+        padding: 10px;
     }
+    
     .category-button {
         background-color: #f0f8f0;
         border: 2px solid #2e8b57;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 5px 0;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 6px 0;
         width: 100%;
         text-align: center;
         font-weight: bold;
         color: #2e8b57;
+        font-size: 16px;
     }
+    
     .category-button:hover {
         background-color: #2e8b57;
         color: white;
     }
+    
     .table-container {
         background-color: white;
-        border-radius: 10px;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+    
+    /* Expandable card styling */
+    .streamlit-expanderHeader {
+        background-color: #e8f5e9 !important;
+        border: 2px solid #2e8b57 !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        margin: 8px 0 !important;
+        font-weight: bold !important;
+    }
+    
+    .streamlit-expanderContent {
+        background-color: #f9f9f9 !important;
+        padding: 15px !important;
+    }
+    
+    /* Button styling for mobile */
+    .stButton > button {
+        width: 100%;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        margin: 5px 0 !important;
+    }
+    
+    /* Input fields */
+    .stTextInput input, .stNumberInput input, .stSelectbox select {
+        font-size: 16px !important;
+        padding: 10px !important;
+        border-radius: 5px !important;
+    }
+    
+    /* Tabs */
+    .stTabs [role="tablist"] button {
+        font-size: 14px !important;
+        padding: 10px 15px !important;
+    }
+    
+    /* Reduce margin */
+    .block-container {
+        padding: 10px !important;
+    }
+    
+    /* Better spacing for mobile */
+    h1, h2, h3 {
+        margin-top: 15px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Product info text styling */
+    p {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Better divider */
+    hr {
+        margin: 10px 0 !important;
+        border: none !important;
+        border-top: 1px solid #ddd !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
         padding: 20px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
@@ -147,50 +226,43 @@ def main_interface():
         total_products = sum(len(products) for products in data["products"].values())
         st.markdown(f"**Total Products:** {total_products}")
 
-    # Right column - Product table
+    # Right column - Product cards (mobile-friendly)
     with col_right:
-        st.markdown('<div class="table-container">', unsafe_allow_html=True)
         st.markdown(f"### 📊 {st.session_state.selected_category} Products")
 
         if st.session_state.selected_category in data["products"]:
             products = data["products"][st.session_state.selected_category]
 
             if products:
-                # Convert to DataFrame for table display
-                table_data = []
-                for product_name, product_info in products.items():
-                    table_data.append({
-                        "Product Name": product_name,
-                        "Source": product_info.get("source", "N/A"),
-                        "Type": "行貨" if product_info.get("is_genuine", True) else "水貨",
-                        "Price ($)": f"{product_info.get('price', 0):.2f}",
-                        "Unit": product_info.get("unit", "N/A"),
-                        "Date Added": product_info.get("date_added", "N/A")
-                    })
-
-                df = pd.DataFrame(table_data)
-
-                # Display table with custom styling
-                st.dataframe(
-                    df,
-                    use_container_width=True,
-                    hide_index=True,
-                    column_config={
-                        "Product Name": st.column_config.TextColumn("Product Name", width="medium"),
-                        "Source": st.column_config.TextColumn("Source", width="medium"),
-                        "Type": st.column_config.TextColumn("Type", width="small"),
-                        "Price ($)": st.column_config.TextColumn("Price ($)", width="small"),
-                        "Unit": st.column_config.TextColumn("Unit", width="small"),
-                        "Date Added": st.column_config.TextColumn("Date Added", width="medium")
-                    }
-                )
+                # Display as expandable cards instead of table
+                for idx, (product_name, product_info) in enumerate(products.items()):
+                    product_type = "✅ 行貨 (Genuine)" if product_info.get("is_genuine", True) else "⚠️ 水貨 (Non-Genuine)"
+                    price = f"${product_info.get('price', 0):.2f}"
+                    unit = product_info.get("unit", "N/A")
+                    source = product_info.get("source", "N/A")
+                    date_added = product_info.get("date_added", "N/A")
+                    
+                    # Create expandable product card
+                    with st.expander(f"💊 {product_name} - {price}", expanded=(idx == 0)):
+                        col1, col2 = st.columns(2)
+                        
+                        with col1:
+                            st.markdown(f"**Product:** {product_name}")
+                            st.markdown(f"**Price:** {price}")
+                            st.markdown(f"**Unit:** {unit}")
+                        
+                        with col2:
+                            st.markdown(f"**Type:** {product_type}")
+                            st.markdown(f"**Source:** {source}")
+                            st.markdown(f"**Added:** {date_added}")
+                        
+                        # Divider line
+                        st.divider()
 
             else:
-                st.info(f"No products found in {st.session_state.selected_category} category.")
+                st.info(f"📭 No products found in {st.session_state.selected_category} category.")
         else:
-            st.info("No products available in this category.")
-
-        st.markdown('</div>', unsafe_allow_html=True)
+            st.info("📭 No products available in this category.")
 
 # --- Main App Logic ---
 def main():
