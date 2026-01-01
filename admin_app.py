@@ -144,8 +144,14 @@ def admin_interface():
     # Header
     st.markdown('<h1 class="main-header">💉 Clinic Product Management</h1>', unsafe_allow_html=True)
 
-    # Logout button
+    # Top bar with upload and logout buttons
     col1, col2, col3 = st.columns([1, 1, 1])
+    
+    with col1:
+        if st.button("☁️ Upload to Cloud", key="upload_btn", use_container_width=True, help="Save all changes to cloud"):
+            save_data(data)
+            st.success("✅ All data uploaded successfully!")
+    
     with col3:
         if st.button("Logout", key="logout"):
             st.session_state.authenticated = False
