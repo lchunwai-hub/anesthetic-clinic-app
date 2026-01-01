@@ -262,7 +262,7 @@ def main_interface():
                 table_data.append({
                     "Product Name": product_name,
                     "Price ($)": f"{product_info.get('price', 0):.2f}",
-                    "Type": "✅ Genuine" if product_info.get("is_genuine", True) else "⚠️ Non-Genuine",
+                    "Type": "行" if product_info.get("is_genuine", True) else "水",
                     "Source": product_info.get("source", "N/A")
                 })
 
