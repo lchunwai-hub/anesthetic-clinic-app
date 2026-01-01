@@ -102,9 +102,20 @@ def load_data():
     }
 
 def save_data(data):
-    """Save clinic data to JSON file"""
+    """Save clinic data to JSON file and commit to GitHub"""
     with open(DATA_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    
+    # Try to commit to git if available (for Streamlit Cloud sync)
+    try:
+        import subprocess
+        subprocess.run(['git', 'config', 'user.email', 'admin@clinic.com'], check=False)
+        subprocess.run(['git', 'config', 'user.name', 'Clinic Admin'], check=False)
+        subprocess.run(['git', 'add', DATA_FILE], check=False)
+        subprocess.run(['git', 'commit', '-m', 'Update product data'], check=False)
+        subprocess.run(['git', 'push'], check=False)
+    except:
+        pass  # If git is not available or fails, just save locally
 
 # --- Session State Initialization ---
 if 'authenticated' not in st.session_state:
