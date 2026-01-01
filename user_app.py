@@ -4,6 +4,7 @@ import os
 import pandas as pd
 
 # --- Page Configuration ---
+# Version 2.0: Mobile-optimized card layout
 st.set_page_config(
     page_title="Product Catalog",
     page_icon="💉",
