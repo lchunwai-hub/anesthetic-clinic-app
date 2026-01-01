@@ -168,9 +168,8 @@ st.markdown("""
 # --- Data Management ---
 DATA_FILE = "clinic_data.json"
 
-@st.cache_data(ttl=5)
 def load_data():
-    """Load clinic data from JSON file with short cache (5 seconds)"""
+    """Load clinic data from JSON file (no caching for real-time updates)"""
     if os.path.exists(DATA_FILE):
         try:
             with open(DATA_FILE, 'r', encoding='utf-8') as f:
@@ -245,7 +244,6 @@ def main_interface():
     # Refresh button
     with header_cols[1]:
         if st.button("🔄", key="refresh_btn", help="Refresh data"):
-            st.cache_data.clear()
             st.rerun()
     
     # Logout button
