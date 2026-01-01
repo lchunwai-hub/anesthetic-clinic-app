@@ -225,17 +225,15 @@ def main_interface():
     # Header
     st.markdown('<h1 class="main-header">💉 Anesthetic Clinic Product Catalog</h1>', unsafe_allow_html=True)
 
-    # Top bar with category icons and logout button
+    # Top bar with category buttons and logout button
     header_cols = st.columns([1, 1, 1, 1, 1])
     
     categories = ["填充", "水光", "溶脂"]
-    category_emojis = {"填充": "💉", "水光": "💧", "溶脂": "🔥"}
     
-    # Category buttons with icons (compact, small)
+    # Category buttons (horizontal, text only)
     for idx, category in enumerate(categories):
         with header_cols[idx]:
-            emoji = category_emojis.get(category, "📦")
-            if st.button(f"{emoji}", key=f"user_cat_{category}", help=f"{category}"):
+            if st.button(category, key=f"user_cat_{category}", use_container_width=True):
                 st.session_state.selected_category = category
                 st.rerun()
     
