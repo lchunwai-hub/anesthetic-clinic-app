@@ -73,27 +73,36 @@ st.markdown("""
     
     /* Mobile-friendly table styling */
     [data-testid="stDataFrame"] {
-        font-size: 13px !important;
+        font-size: 12px !important;
+        overflow-x: hidden !important;
     }
     
     [data-testid="stDataFrame"] table {
         width: 100% !important;
         border-collapse: collapse !important;
+        table-layout: fixed !important;
     }
     
     [data-testid="stDataFrame"] th {
         background-color: #2e8b57 !important;
         color: white !important;
-        padding: 10px !important;
+        padding: 8px 6px !important;
         text-align: left !important;
         font-weight: bold !important;
         border: 1px solid #1d5e3f !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     
     [data-testid="stDataFrame"] td {
-        padding: 10px !important;
+        padding: 8px 6px !important;
         border: 1px solid #ddd !important;
         text-align: left !important;
+        font-size: 12px !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     [data-testid="stDataFrame"] tr:nth-child(even) {
@@ -263,26 +272,24 @@ def main_interface():
                 table_data = []
                 for product_name, product_info in products.items():
                     table_data.append({
-                        "Product": product_name,
-                        "Price": f"${product_info.get('price', 0):.2f}",
+                        "Product Name": product_name,
+                        "Price ($)": f"{product_info.get('price', 0):.2f}",
                         "Type": "✅ Genuine" if product_info.get("is_genuine", True) else "⚠️ Non-Genuine",
-                        "Source": product_info.get("source", "N/A"),
-                        "Unit": product_info.get("unit", "N/A")
+                        "Source": product_info.get("source", "N/A")
                     })
 
                 df = pd.DataFrame(table_data)
 
-                # Display table with mobile-friendly styling
+                # Display table with mobile-friendly styling (no horizontal scroll)
                 st.dataframe(
                     df,
                     use_container_width=True,
                     hide_index=True,
                     column_config={
-                        "Product": st.column_config.TextColumn("Product", width="large"),
-                        "Price": st.column_config.TextColumn("Price", width="small"),
-                        "Type": st.column_config.TextColumn("Type", width="medium"),
-                        "Source": st.column_config.TextColumn("Source", width="medium"),
-                        "Unit": st.column_config.TextColumn("Unit", width="small")
+                        "Product Name": st.column_config.TextColumn("Product Name", width="medium"),
+                        "Price ($)": st.column_config.TextColumn("Price", width="small"),
+                        "Type": st.column_config.TextColumn("Type", width="small"),
+                        "Source": st.column_config.TextColumn("Source", width="small")
                     }
                 )
 
