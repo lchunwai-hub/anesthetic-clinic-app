@@ -167,15 +167,24 @@ st.markdown("""
 
 # --- Data Management ---
 DATA_FILE = "clinic_data.json"
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/lchunwai-hub/anesthetic-clinic-app/main/clinic_data.json"
 
 def load_data():
-    """Load clinic data from JSON file (no caching for real-time updates)"""
-    if os.path.exists(DATA_FILE):
-        try:
-            with open(DATA_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except:
-            pass
+    """Load clinic data from GitHub (for Streamlit Cloud sync) or local file"""
+    try:
+        # Try loading from GitHub first (for real-time sync)
+        import urllib.request
+        with urllib.request.urlopen(GITHUB_RAW_URL) as response:
+            data = json.loads(response.read().decode())
+            return data
+    except:
+        # Fallback to local file
+        if os.path.exists(DATA_FILE):
+            try:
+                with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except:
+                pass
     return {"products": {}, "sources": [], "users": {}}
 
 # --- Session State ---
