@@ -225,21 +225,25 @@ def main_interface():
     # Header
     st.markdown('<h1 class="main-header">💉 Anesthetic Clinic Product Catalog</h1>', unsafe_allow_html=True)
 
-    # Top bar with category buttons and logout button
-    header_cols = st.columns([1, 1, 1, 1, 1])
+    # Top bar with category selector and logout button
+    header_cols = st.columns([2, 1])
     
     categories = ["填充", "水光", "溶脂"]
     
-    # Category buttons (horizontal, text only)
-    for idx, category in enumerate(categories):
-        with header_cols[idx]:
-            if st.button(category, key=f"user_cat_{category}", use_container_width=True):
-                st.session_state.selected_category = category
-                st.rerun()
+    # Category selector box
+    with header_cols[0]:
+        selected = st.selectbox(
+            "Select Category",
+            categories,
+            index=categories.index(st.session_state.selected_category),
+            key="category_selector",
+            label_visibility="collapsed"
+        )
+        st.session_state.selected_category = selected
     
     # Logout button
-    with header_cols[4]:
-        if st.button("Logout", key="user_logout"):
+    with header_cols[1]:
+        if st.button("Logout", key="user_logout", use_container_width=True):
             st.session_state.user_logged_in = False
             st.rerun()
 
