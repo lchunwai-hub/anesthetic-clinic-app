@@ -7,7 +7,7 @@
         "source": "SINOPHARM",
         "is_genuine": false,
         "price": 820.0,
-        "unit": "per 支",
+        "unit": "per syringe",
         "date_added": "2026-01-01 09:38"
       },
       {
@@ -16,7 +16,7 @@
         "source": "SINOPHARM",
         "is_genuine": true,
         "price": 820.0,
-        "unit": "per 支",
+        "unit": "per syringe",
         "date_added": "2026-01-01 12:00"
       }
     ],
