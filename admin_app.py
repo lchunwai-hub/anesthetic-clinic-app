@@ -2,6 +2,7 @@ import streamlit as st
 import json
 import os
 from datetime import datetime
+import uuid
 
 # --- Page Configuration ---
 st.set_page_config(
@@ -93,7 +94,7 @@ def load_data():
         except:
             pass
     return {
-        "products": {},
+        "products": {"填充": [], "水光": [], "溶脂": []},
         "sources": ["本地供應商", "香港代理", "台灣進口", "其他"],
         "users": {
             "admin": "admin123",
@@ -167,7 +168,7 @@ def admin_interface():
     # Left column - Product categories
     with col_left:
         st.markdown("### 📁 Product Categories")
-        categories = ["填充", "水光", "溶脂"]
+        categories = ["填充", "水光", "溶脂", "肉毒", "生髮"]
 
         for category in categories:
             if st.button(f"📦 {category}",
@@ -183,10 +184,32 @@ def admin_interface():
         # Show existing products in current category
         if st.session_state.current_category in data["products"]:
             products = data["products"][st.session_state.current_category]
+            
+            # Handle migration from dict to list format
+            if isinstance(products, dict):
+                # Convert old dict format to new list format
+                products_list = []
+                for prod_name, prod_info in products.items():
+                    product_type_suffix = "_g" if prod_info.get('is_genuine', True) else "_ng"
+                    products_list.append({
+                        'id': f"{prod_name.lower().replace(' ', '_')}{product_type_suffix}",
+                        'name': prod_name,
+                        **prod_info
+                    })
+                data["products"][st.session_state.current_category] = products_list
+                save_data(data)  # Save the migrated format
+                products = products_list
+            
             st.markdown(f"**Products in {st.session_state.current_category}:** {len(products)}")
 
-            for product_name, product_info in list(products.items()):
-                with st.expander(f"💰 {product_name}"):
+            for idx, product_info in enumerate(products):
+                product_id = product_info.get('id', f'product_{idx}')
+                key_suffix = f"{product_id}_{idx}"
+                product_name = product_info['name']
+                product_type = '行' if product_info['is_genuine'] else '水'
+                display_name = f"{product_name} ({product_type})"
+                
+                with st.expander(f"💰 {display_name}"):
                     col1, col2 = st.columns([3, 1])
                     with col1:
                         st.write(f"**Source:** {product_info['source']}")
@@ -196,47 +219,47 @@ def admin_interface():
                         st.write(f"**Added:** {product_info['date_added']}")
                     with col2:
                         # Edit button
-                        edit_key = f"edit_{st.session_state.current_category}_{product_name}"
+                        edit_key = f"edit_{st.session_state.current_category}_{key_suffix}"
                         if st.button("✏️ Edit", key=edit_key, help=f"Edit {product_name}"):
-                            st.session_state[f"editing_{product_name}"] = True
+                            st.session_state[f"editing_{key_suffix}"] = True
 
                         # Delete button
-                        delete_key = f"delete_{st.session_state.current_category}_{product_name}"
+                        delete_key = f"delete_{st.session_state.current_category}_{key_suffix}"
                         if st.button("🗑️ Delete", key=delete_key, help=f"Delete {product_name}"):
-                            st.session_state[f"confirm_delete_{product_name}"] = True
+                            st.session_state[f"confirm_delete_{key_suffix}"] = True
 
                 # Edit form (shown when edit button is clicked)
-                if st.session_state.get(f"editing_{product_name}", False):
+                if st.session_state.get(f"editing_{key_suffix}", False):
                     st.markdown("---")
                     with st.container():
-                        st.markdown(f"### ✏️ Edit Product: {product_name}")
+                        st.markdown(f"### ✏️ Edit Product: {display_name}")
 
-                        with st.form(f"edit_form_{product_name}"):
+                        with st.form(f"edit_form_{key_suffix}"):
                             # Product name (editable)
-                            new_product_name = st.text_input("Product Name", value=product_name, key=f"name_{product_name}")
+                            new_product_name = st.text_input("Product Name", value=product_name, key=f"name_{key_suffix}")
 
                             # Source selection
                             source_options = data["sources"] + ["+ Add New Source"]
                             current_source_index = data["sources"].index(product_info['source']) if product_info['source'] in data["sources"] else 0
-                            selected_source = st.selectbox("Product Source", source_options, index=current_source_index, key=f"source_{product_name}")
+                            selected_source = st.selectbox("Product Source", source_options, index=current_source_index, key=f"source_{key_suffix}")
 
                             # Handle new source addition
                             if selected_source == "+ Add New Source":
-                                new_source = st.text_input("New Source Name", placeholder="Enter new source", key=f"new_src_{product_name}")
+                                new_source = st.text_input("New Source Name", placeholder="Enter new source", key=f"new_src_{key_suffix}")
                                 if new_source and new_source not in data["sources"]:
                                     selected_source = new_source
 
                             # Genuine/Parallel import
-                            is_genuine = st.checkbox("行貨 (Genuine Goods)", value=product_info['is_genuine'], key=f"genuine_{product_name}")
+                            is_genuine = st.checkbox("行貨 (Genuine Goods)", value=product_info['is_genuine'], key=f"genuine_{key_suffix}")
 
                             # Price and Unit
                             col3, col4 = st.columns(2)
                             with col3:
-                                price = st.number_input("Price ($)", value=float(product_info['price']), min_value=0.0, step=0.01, format="%.2f", key=f"price_{product_name}")
+                                price = st.number_input("Price ($)", value=float(product_info['price']), min_value=0.0, step=0.01, format="%.2f", key=f"price_{key_suffix}")
                             with col4:
                                 unit_options = ["per 支", "per 盒", "per part", "per ml", "per vial"]
                                 current_unit_index = unit_options.index(product_info['unit']) if product_info['unit'] in unit_options else 0
-                                unit = st.selectbox("Unit", unit_options, index=current_unit_index, key=f"unit_{product_name}")
+                                unit = st.selectbox("Unit", unit_options, index=current_unit_index, key=f"unit_{key_suffix}")
 
                             # Form buttons
                             col_save, col_cancel = st.columns(2)
@@ -251,16 +274,14 @@ def admin_interface():
                                 elif price <= 0:
                                     st.error("Price must be greater than 0")
                                 else:
-                                    # Remove old product if name changed
-                                    if new_product_name != product_name:
-                                        del data["products"][st.session_state.current_category][product_name]
-
                                     # Add/update new source if needed
                                     if selected_source not in data["sources"] and selected_source != "+ Add New Source":
                                         data["sources"].append(selected_source)
 
-                                    # Update product
-                                    data["products"][st.session_state.current_category][new_product_name.strip()] = {
+                                    # Update product at this index
+                                    data["products"][st.session_state.current_category][idx] = {
+                                        "id": product_id,
+                                        "name": new_product_name.strip(),
                                         "source": selected_source if selected_source != "+ Add New Source" else new_source,
                                         "is_genuine": is_genuine,
                                         "price": price,
@@ -270,32 +291,31 @@ def admin_interface():
 
                                     save_data(data)
                                     st.success(f"✅ Product updated successfully!")
-                                    st.session_state[f"editing_{product_name}"] = False
-                                    if new_product_name != product_name:
-                                        st.rerun()  # Refresh if name changed
+                                    st.session_state[f"editing_{key_suffix}"] = False
+                                    st.rerun()
 
                             if cancel_submitted:
-                                st.session_state[f"editing_{product_name}"] = False
+                                st.session_state[f"editing_{key_suffix}"] = False
                                 st.rerun()
 
                 # Delete confirmation (shown when delete button is clicked)
-                if st.session_state.get(f"confirm_delete_{product_name}", False):
+                if st.session_state.get(f"confirm_delete_{key_suffix}", False):
                     st.markdown("---")
                     with st.container():
-                        st.error(f"🗑️ Are you sure you want to delete **{product_name}**?")
+                        st.error(f"🗑️ Are you sure you want to delete **{display_name}**?")
                         st.warning("This action cannot be undone!")
 
                         col_confirm, col_cancel_del = st.columns(2)
                         with col_confirm:
-                            if st.button("🗑️ Yes, Delete", key=f"confirm_del_{product_name}", use_container_width=True):
-                                del data["products"][st.session_state.current_category][product_name]
+                            if st.button("🗑️ Yes, Delete", key=f"confirm_del_{key_suffix}", use_container_width=True):
+                                data["products"][st.session_state.current_category].pop(idx)
                                 save_data(data)
-                                st.success(f"✅ Product '{product_name}' deleted successfully!")
-                                st.session_state[f"confirm_delete_{product_name}"] = False
+                                st.success(f"✅ Product deleted successfully!")
+                                st.session_state[f"confirm_delete_{key_suffix}"] = False
                                 st.rerun()
                         with col_cancel_del:
-                            if st.button("❌ Cancel", key=f"cancel_del_{product_name}", use_container_width=True):
-                                st.session_state[f"confirm_delete_{product_name}"] = False
+                            if st.button("❌ Cancel", key=f"cancel_del_{key_suffix}", use_container_width=True):
+                                st.session_state[f"confirm_delete_{key_suffix}"] = False
                                 st.rerun()
 
     # Right column - Add new product form
@@ -362,16 +382,22 @@ def admin_interface():
                 else:
                     # Initialize category if it doesn't exist
                     if st.session_state.current_category not in data["products"]:
-                        data["products"][st.session_state.current_category] = {}
+                        data["products"][st.session_state.current_category] = []
 
-                    # Add product
-                    data["products"][st.session_state.current_category][product_name.strip()] = {
+                    # Generate unique ID based on product name, type, and timestamp to avoid duplicates
+                    product_type_suffix = "_g" if is_genuine else "_ng"
+                    product_id = f"{product_name.lower().replace(' ', '_')}{product_type_suffix}_{datetime.now().strftime('%Y%m%d%H%M%S%f')}"
+                    
+                    # Add product to list
+                    data["products"][st.session_state.current_category].append({
+                        "id": product_id,
+                        "name": product_name.strip(),
                         "source": final_source,
                         "is_genuine": is_genuine,
                         "price": price,
                         "unit": unit,
                         "date_added": datetime.now().strftime("%Y-%m-%d %H:%M")
-                    }
+                    })
 
                     save_data(data)
                     st.success(f"✅ Product '{product_name}' added successfully!")

@@ -170,9 +170,17 @@ DATA_FILE = "clinic_data.json"
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/lchunwai-hub/anesthetic-clinic-app/main/clinic_data.json"
 
 def load_data():
-    """Load clinic data from GitHub (for Streamlit Cloud sync) or local file"""
+    """Load clinic data from local file first (for offline use), then GitHub"""
+    # Try loading from local file FIRST (for offline/local testing)
+    if os.path.exists(DATA_FILE):
+        try:
+            with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except:
+            pass
+    
+    # Fallback to GitHub (for Streamlit Cloud)
     try:
-        # Try loading from GitHub first (for real-time sync with cache-busting)
         import urllib.request
         import time
         # Add timestamp to prevent caching
@@ -181,13 +189,8 @@ def load_data():
             data = json.loads(response.read().decode())
             return data
     except:
-        # Fallback to local file
-        if os.path.exists(DATA_FILE):
-            try:
-                with open(DATA_FILE, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            except:
-                pass
+        pass
+    
     return {"products": {}, "sources": [], "users": {}}
 
 # --- Session State ---
@@ -240,7 +243,7 @@ def main_interface():
     # Top bar with category selector, refresh and logout button
     header_cols = st.columns([2, 0.5, 0.5])
     
-    categories = ["填充", "水光", "溶脂"]
+    categories = ["填充", "水光", "溶脂", "肉毒", "生髮"]
     
     # Category selector box
     with header_cols[0]:
@@ -271,13 +274,24 @@ def main_interface():
 
     if st.session_state.selected_category in data["products"]:
         products = data["products"][st.session_state.selected_category]
+        
+        # Handle migration from dict to list format
+        if isinstance(products, dict):
+            # Convert old dict format to new list format
+            products_list = []
+            for prod_name, prod_info in products.items():
+                products_list.append({
+                    'name': prod_name,
+                    **prod_info
+                })
+            products = products_list
 
         if products:
             # Convert to DataFrame for table display
             table_data = []
-            for product_name, product_info in products.items():
+            for product_info in products:
                 table_data.append({
-                    "Product Name": product_name,
+                    "Product Name": product_info['name'],
                     "Price ($)": f"{product_info.get('price', 0):.2f}",
                     "Type": "行" if product_info.get("is_genuine", True) else "水",
                     "Source": product_info.get("source", "N/A")
