@@ -170,26 +170,24 @@ DATA_FILE = "clinic_data.json"
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/lchunwai-hub/anesthetic-clinic-app/main/clinic_data.json"
 
 def load_data():
-    """Load clinic data from local file first (for offline use), then GitHub"""
-    # Try loading from local file FIRST (for offline/local testing)
-    if os.path.exists(DATA_FILE):
-        try:
-            with open(DATA_FILE, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except:
-            pass
-    
-    # Fallback to GitHub (for Streamlit Cloud)
+    """Load clinic data from GitHub (always fresh), fallback to local file"""
+    # Try loading from GitHub FIRST (for Streamlit Cloud - always fresh data)
     try:
         import urllib.request
         import time
         # Add timestamp to prevent caching
         cache_buster = f"?t={int(time.time())}"
-        with urllib.request.urlopen(GITHUB_RAW_URL + cache_buster) as response:
+        with urllib.request.urlopen(GITHUB_RAW_URL + cache_buster, timeout=5) as response:
             data = json.loads(response.read().decode())
             return data
-    except:
-        pass
+    except Exception as e:
+        # If GitHub fails, try local file (for offline/development)
+        if os.path.exists(DATA_FILE):
+            try:
+                with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except:
+                pass
     
     return {"products": {}, "sources": [], "users": {}}
 
@@ -237,34 +235,24 @@ def main_interface():
     """Main user interface with categories and product table"""
     data = load_data()
 
-    # Header
-    st.markdown('<h1 class="main-header">💉 Anesthetic Clinic Product Catalog</h1>', unsafe_allow_html=True)
-
-    # Top bar with category selector, refresh and logout button
-    header_cols = st.columns([2, 0.5, 0.5])
+    # Top bar with category selector and refresh button
+    header_cols = st.columns([4, 0.5])
     
     categories = ["填充", "水光", "溶脂", "肉毒", "生髮"]
     
     # Category selector box
     with header_cols[0]:
         selected = st.selectbox(
-            "Select Category",
+            "選擇類別",
             categories,
             index=categories.index(st.session_state.selected_category),
-            key="category_selector",
-            label_visibility="collapsed"
+            key="category_selector"
         )
         st.session_state.selected_category = selected
     
     # Refresh button
     with header_cols[1]:
         if st.button("🔄", key="refresh_btn", help="Refresh data"):
-            st.rerun()
-    
-    # Logout button
-    with header_cols[2]:
-        if st.button("Logout", key="user_logout", use_container_width=True):
-            st.session_state.user_logged_in = False
             st.rerun()
 
     st.markdown("---")
@@ -292,7 +280,7 @@ def main_interface():
             for product_info in products:
                 table_data.append({
                     "Product Name": product_info['name'],
-                    "Price ($)": f"{product_info.get('price', 0):.2f}",
+                    "Price": float(product_info.get('price', 0)),
                     "Type": "行" if product_info.get("is_genuine", True) else "水",
                     "Source": product_info.get("source", "N/A")
                 })
@@ -304,9 +292,10 @@ def main_interface():
                 df,
                 use_container_width=True,
                 hide_index=True,
+                height=600,
                 column_config={
                     "Product Name": st.column_config.TextColumn("Product Name", width="medium"),
-                    "Price ($)": st.column_config.TextColumn("Price", width="small"),
+                    "Price": st.column_config.NumberColumn("Price ($)", format="%.2f", width="small"),
                     "Type": st.column_config.TextColumn("Type", width="small"),
                     "Source": st.column_config.TextColumn("Source", width="small")
                 }

@@ -26,15 +26,75 @@ A comprehensive web application for managing and viewing anesthetic clinic produ
 pip install -r requirements.txt
 ```
 
-### 2. Run Admin Interface
+### 2. 🎯 簡易啟動方式（推薦）
+
+使用提供的啟動腳本，一個命令即可運行：
+
+#### 啟動用戶介面
 ```bash
-streamlit run admin_app.py
+./start_user.sh
+```
+- 端口: 8501
+- 自動清理舊進程
+- 顯示訪問地址
+
+#### 啟動管理介面
+```bash
+./start_admin.sh
+```
+- 端口: 8502
+- 自動清理舊進程
+- 顯示登入資訊
+
+#### 同時啟動兩個介面
+```bash
+./start_both.sh
+```
+- 在後台運行兩個服務
+- 自動顯示所有訪問地址
+- 查看日誌: `tail -f user_app.log` 或 `tail -f admin_app.log`
+
+#### 停止所有服務
+```bash
+./stop_all.sh
 ```
 
-### 3. Run User Interface
+### 3. 手動運行方式
+
+**管理介面:**
 ```bash
-streamlit run user_app.py
+streamlit run admin_app.py --server.port 8502
 ```
+
+**用戶介面:**
+```bash
+streamlit run user_app.py --server.port 8501
+```
+
+### 📱 從其他設備訪問 (不同 WiFi 網路)
+
+應用程式已配置為可從任何設備訪問。啟動後:
+
+1. **查看你的 IP 地址:**
+   ```bash
+   hostname -I
+   # 或
+   ip addr show | grep "inet " | grep -v 127.0.0.1
+   ```
+
+2. **在瀏覽器訪問:**
+   - 用戶介面: `http://你的IP:8501`
+   - 管理介面: `http://你的IP:8502`
+   - 範例: `http://192.168.1.100:8501`
+
+3. **確保防火牆允許連接:**
+   ```bash
+   # 如需要,開放端口 (Linux)
+   sudo ufw allow 8501
+   sudo ufw allow 8502
+   ```
+
+**注意:** 配置檔案位於 `.streamlit/config.toml`,已設定 `address = "0.0.0.0"` 允許遠端訪問。
 
 ## 👥 User Accounts
 

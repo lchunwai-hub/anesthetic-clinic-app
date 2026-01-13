@@ -14,21 +14,732 @@
         "id": "vobella_g",
         "name": "VOBELLA",
         "source": "SINOPHARM",
-        "is_genuine": true,
+        "is_genuine": false,
         "price": 820.0,
-        "unit": "per syringe",
+        "unit": "per 支",
         "date_added": "2026-01-01 12:00"
+      },
+      {
+        "id": "volift_ng_20260102031340496784",
+        "name": "VOLIFT",
+        "source": "SINOPHARM",
+        "is_genuine": false,
+        "price": 820.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:13"
+      },
+      {
+        "id": "volux_ng_20260102031354664312",
+        "name": "VOLUX",
+        "source": "SINOPHARM",
+        "is_genuine": false,
+        "price": 825.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:13"
+      },
+      {
+        "id": "voluma_g_20260102031408868736",
+        "name": "VOLUMA",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 2200.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:14"
+      },
+      {
+        "id": "vobella_g_20260102031417383820",
+        "name": "VOBELLA",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1870.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:14"
+      },
+      {
+        "id": "volift_g_20260102031427985202",
+        "name": "VOLIFT",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1980.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:14"
+      },
+      {
+        "id": "volux_g_20260102031435648213",
+        "name": "VOLUX",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 2310.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:14"
+      },
+      {
+        "id": "ellanse_s_g_20260102031729653209",
+        "name": "ELLANSE S",
+        "source": "中國香港",
+        "is_genuine": true,
+        "price": 1741.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:17"
+      },
+      {
+        "id": "ellanse_m_g_20260102031740300960",
+        "name": "ELLANSE M",
+        "source": "中國香港",
+        "is_genuine": true,
+        "price": 2146.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:17"
+      },
+      {
+        "id": "ellanse_s_g_20260102031754310828",
+        "name": "ELLANSE S",
+        "source": "台灣",
+        "is_genuine": true,
+        "price": 1264.7,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:17"
+      },
+      {
+        "id": "ellanse_m_g_20260102031802060456",
+        "name": "ELLANSE M",
+        "source": "台灣",
+        "is_genuine": true,
+        "price": 1514.3,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:18"
+      },
+      {
+        "id": "ellanse_m_ng_20260102031837840733",
+        "name": "ELLANSE S",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 875.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:18"
+      },
+      {
+        "id": "ellanse_m_ng_20260102031920935478",
+        "name": "ELLANSE M",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 925.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:19"
+      },
+      {
+        "id": "sculptra_g_20260102031944608106",
+        "name": "SCULPTRA",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1716.8,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:19"
+      },
+      {
+        "id": "sculptra_ng_20260102031955337943",
+        "name": "SCULPTRA",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 1190.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:19"
+      },
+      {
+        "id": "derma_veil_g_20260102032017043400",
+        "name": "DERMA VEIL",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 2205.9,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:20"
+      },
+      {
+        "id": "derma_veil_ng_20260102032029845810",
+        "name": "DERMA VEIL",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 990.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:20"
+      },
+      {
+        "id": "harmonyca_g_20260102032213248244",
+        "name": "HARMONYCA",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 2254.25,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:22"
+      },
+      {
+        "id": "harmonyca_g_20260102032237838906",
+        "name": "HARMONYCA",
+        "source": "DR YAU",
+        "is_genuine": true,
+        "price": 1150.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:22"
+      },
+      {
+        "id": "aesthetfill_ng_20260102032259941860",
+        "name": "AESTHETFILL",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 1341.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:22"
+      },
+      {
+        "id": "radiasses_g_20260102032314435593",
+        "name": "RADIASSES",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1045.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:23"
+      },
+      {
+        "id": "neruamis_(新)_g_20260102032339047384",
+        "name": "NERUAMIS (新)",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 300.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:23"
+      },
+      {
+        "id": "neruamis_(新)_ng_20260102032351207645",
+        "name": "NERUAMIS",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 150.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:23"
+      },
+      {
+        "id": "neruamis_ng_20260102032414950348",
+        "name": "NERUAMIS",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 136.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:24"
+      },
+      {
+        "id": "ganafill_x__ng_20260102032634053646",
+        "name": "GANAFILL X",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 3198.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:26"
+      },
+      {
+        "id": "ganafill_ha_ng_20260102032641371730",
+        "name": "GANAFILL HA",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 780.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:26"
+      },
+      {
+        "id": "belotero_soft_g_20260102033342507542",
+        "name": "BELOTERO SOFT",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 578.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:33"
+      },
+      {
+        "id": "belotero_volume_g_20260102033352597937",
+        "name": "BELOTERO VOLUME",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 750.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:33"
+      },
+      {
+        "id": "belotero_intense_g_20260102033402474315",
+        "name": "BELOTERO INTENSE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 700.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:34"
+      },
+      {
+        "id": "restylane_perlane_g_20260102033434103808",
+        "name": "RESTYLANE PERLANE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1165.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:34"
+      },
+      {
+        "id": "restylane_perlane_ng_20260102033444318838",
+        "name": "RESTYLANE PERLANE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 700.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:34"
+      },
+      {
+        "id": "restylane_dedyne_g_20260102033503758701",
+        "name": "RESTYLANE DEDYNE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 900.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:35"
+      },
+      {
+        "id": "restylane_dedyne_ng_20260102033511598487",
+        "name": "RESTYLANE DEDYNE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 630.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:35"
+      },
+      {
+        "id": "teosyl_redenisty_ii_ng_20260102033532480912",
+        "name": "TEOSYL REDENISTY II",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 725.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:35"
+      },
+      {
+        "id": "minabella_deep/ligh/prime_ng_20260102034305053583",
+        "name": "MINABELLA DEEP/LIGH/PRIME",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 76.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:43"
+      },
+      {
+        "id": "ellasty_fine/deep/grand_ng_20260102034340985677",
+        "name": "ELLASTY FINE/DEEP/GRAND",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 93.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:43"
+      },
+      {
+        "id": "starderm_mega/pico/tera_ng_20260102034358180117",
+        "name": "STARDERM MEGA/PICO/TERA",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 109.2,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:43"
+      },
+      {
+        "id": "regenesse_ng_20260102034408041482",
+        "name": "REGENESSE",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 124.8,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:44"
+      },
+      {
+        "id": "xxl_ng_20260102135256461641",
+        "name": "XXL",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 565.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 13:52"
+      },
+      {
+        "id": "restylane_kysse_ng_20260102135510512515",
+        "name": "RESTYLANE KYSSE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 640.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 13:55"
+      },
+      {
+        "id": "belotero_balance_g_20260102135713172785",
+        "name": "BELOTERO BALANCE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 630.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 13:57"
+      },
+      {
+        "id": "restylane_kysse__g_20260104104332128804",
+        "name": "Restylane Kysse",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 859.0,
+        "unit": "per 支",
+        "date_added": "2026-01-04 10:43"
+      },
+      {
+        "id": "belotero_balance_g_20260104143116705438",
+        "name": "BELOTERO BALANCE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 630.0,
+        "unit": "per 支",
+        "date_added": "2026-01-04 14:31"
       }
     ],
     "水光": [
       {
-        "id": "hyal_001",
-        "name": "Hyaluronic Acid Solution 5ml",
-        "source": "Local Supplier",
+        "id": "rejuarn_black_ng_20260102032717069601",
+        "name": "REJUARN BLACK",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 795.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:27"
+      },
+      {
+        "id": "rejuarn_black_ng_20260102032725851321",
+        "name": "REJUARN BLACK",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 726.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:27"
+      },
+      {
+        "id": "cytocare_ng_20260102032742884306",
+        "name": "CYTOCARE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 150.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:27"
+      },
+      {
+        "id": "belotero_revive_g_20260102032800761140",
+        "name": "BELOTERO REVIVE",
+        "source": "香港代理",
         "is_genuine": true,
+        "price": 643.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:28"
+      },
+      {
+        "id": "juvederm_skinvive_g_20260102032822497317",
+        "name": "JUVEDERM SKINVIVE",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 737.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:28"
+      },
+      {
+        "id": "juvederm_skinvive_ng_20260102032830892512",
+        "name": "JUVEDERM SKINVIVE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 581.1,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:28"
+      },
+      {
+        "id": "juvelook_ng_20260102032913425995",
+        "name": "JUVELOOK",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 1006.2,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:29"
+      },
+      {
+        "id": "juvelook_ng_20260102032924805593",
+        "name": "JUVELOOK",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 796.7,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:29"
+      },
+      {
+        "id": "juvelook_volume_ng_20260102032941221382",
+        "name": "JUVELOOK VOLUME",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 1029.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:29"
+      },
+      {
+        "id": "juvelook_volume_ng_20260102032950451084",
+        "name": "JUVELOOK VOLUME",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 851.2,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:29"
+      },
+      {
+        "id": "juvelook_i_ng_20260102033004381247",
+        "name": "JUVELOOK I",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 1053.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:30"
+      },
+      {
+        "id": "juvelook_g_ng_20260102033010688783",
+        "name": "JUVELOOK G",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 1326.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:30"
+      },
+      {
+        "id": "juvelook_g_20260102033024420321",
+        "name": "JUVELOOK",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1733.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:30"
+      },
+      {
+        "id": "lenisna_g_20260102033034918313",
+        "name": "LENISNA",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1714.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:30"
+      },
+      {
+        "id": "restylane_vital_light_g_20260102033056113584",
+        "name": "RESTYLANE VITAL LIGHT",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 621.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:30"
+      },
+      {
+        "id": "restylane_vital__g_20260102033103442280",
+        "name": "RESTYLANE VITAL",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 756.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:31"
+      },
+      {
+        "id": "rrs_ng_20260102033317987187",
+        "name": "RRS",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 82.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:33"
+      },
+      {
+        "id": "restylane_vital_light_ng_20260102033707521484",
+        "name": "RESTYLANE VITAL LIGHT",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 450.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:37"
+      },
+      {
+        "id": "teosyl_redensity_i__ng_20260102033735864065",
+        "name": "TEOSYL REDENSITY I",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 420.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:37"
+      },
+      {
+        "id": "elaxen_pn_ng_20260102034441653859",
+        "name": "ELAXEN PN",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 92.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:44"
+      },
+      {
+        "id": "luclane_pn_ng_20260102034453289974",
+        "name": "LUCLANE PN",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 72.9,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:44"
+      },
+      {
+        "id": "cindella_pn_ng_20260102034508543108",
+        "name": "CINDELLA PN",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 352.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:45"
+      },
+      {
+        "id": "fillroad_gold_ng_20260102034520822147",
+        "name": "FILLROAD GOLD",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 312.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:45"
+      },
+      {
+        "id": "fillroad_light_blue/silver_ng_20260102034540906913",
+        "name": "FILLROAD LIGHT BLUE/SILVER",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 358.8,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:45"
+      },
+      {
+        "id": "profhilo_ng_20260102104804902843",
+        "name": "PROFHILO",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 780.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 10:48"
+      },
+      {
+        "id": "formule_philo_ng_20260102104827057245",
+        "name": "FORMULE PHILO",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 429.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 10:48"
+      },
+      {
+        "id": "formule_hilo_ng_20260102104838985903",
+        "name": "FORMULE HILO",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 390.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 10:48"
+      },
+      {
+        "id": "rejuran_blue/white/red_ng_20260103011137888044",
+        "name": "REJURAN BLUE/WHITE/RED",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 475.8,
+        "unit": "per 支",
+        "date_added": "2026-01-03 01:11"
+      },
+      {
+        "id": "rejuran_blue/white_ng_20260103011151473468",
+        "name": "REJURAN BLUE/WHITE",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 395.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 01:11"
+      },
+      {
+        "id": "rejuran_red_ng_20260103011158835824",
+        "name": "REJURAN RED",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 407.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 01:11"
+      },
+      {
+        "id": "placentex意大利三文魚針__ng_20260103032403975357",
+        "name": "Placentex意大利三文魚針",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 47.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:24"
+      },
+      {
+        "id": "vitamin_c/_1ml_ng_20260103032426070641",
+        "name": "Vitamin C/ 1ml",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 53.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:24"
+      },
+      {
+        "id": "英諾美白小棕瓶inno_2ml_ng_20260103032450233993",
+        "name": "英諾美白小棕瓶INNO 2ML",
+        "source": "水貨",
+        "is_genuine": false,
         "price": 120.0,
-        "unit": "per bottle",
-        "date_added": "2024-01-01 10:30"
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:24"
+      },
+      {
+        "id": "菲洛嘉filorga_2ml_ng_20260103032502698991",
+        "name": "菲洛嘉FILORGA 2ML",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 300.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:25"
+      },
+      {
+        "id": "misfill_pdrn_ng_20260103032541237924",
+        "name": "MISFILL PDRN",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 70.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:25"
+      },
+      {
+        "id": "日本溶斑針/2ml_ng_20260103032610796843",
+        "name": "日本溶斑針/2ml",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 40.0,
+        "unit": "per 支",
+        "date_added": "2026-01-03 03:26"
+      },
+      {
+        "id": "linze_ng_20260107071604817553",
+        "name": "LINZE",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 245.7,
+        "unit": "per 支",
+        "date_added": "2026-01-07 07:16"
+      },
+      {
+        "id": "linze_ng_20260107071617689804",
+        "name": "LINZE",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 191.62,
+        "unit": "per 支",
+        "date_added": "2026-01-07 07:16"
       }
     ],
     "溶脂": [
@@ -40,17 +751,220 @@
         "price": 85.0,
         "unit": "per vial",
         "date_added": "2024-01-01 10:45"
+      },
+      {
+        "id": "wegovy_0.25mg/0.5mg/1mg_g_20260102032539925080",
+        "name": "WEGOVY 0.25mg/0.5mg/1mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 346.2,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:25"
+      },
+      {
+        "id": "wegovy_1.7mg_g_20260102032553390499",
+        "name": "WEGOVY 1.7mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 713.3,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:25"
+      },
+      {
+        "id": "wegovy_2.4mg_g_20260102032605180217",
+        "name": "WEGOVY 2.4mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 866.5,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:26"
+      },
+      {
+        "id": "lipo_lab_ng_20260102033806988994",
+        "name": "LIPO LAB",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 33.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:38"
+      },
+      {
+        "id": "lipo_lab_ng_20260102033813069410",
+        "name": "LIPO LAB",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 24.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:38"
+      },
+      {
+        "id": "cellucare_ng_20260102033825267741",
+        "name": "CELLUCARE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 150.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:38"
+      },
+      {
+        "id": "cellucare_ng_20260102033826891967",
+        "name": "CELLUCARE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 150.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:38"
+      },
+      {
+        "id": "artline_ng_20260102033839253519",
+        "name": "ARTLINE",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 90.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:38"
+      },
+      {
+        "id": "lipo_lab_cs_v_line_ng_20260102033900737127",
+        "name": "LIPO LAB CS V LINE",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 29.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:39"
+      },
+      {
+        "id": "misfill_diamond_face_ng_20260102033919084518",
+        "name": "MISFILL DIAMOND FACE",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 81.9,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:39"
+      },
+      {
+        "id": "misfill_body_ng_20260102033928876837",
+        "name": "MISFILL BODY",
+        "source": "LUKE",
+        "is_genuine": false,
+        "price": 250.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:39"
+      },
+      {
+        "id": "misfill_body_ng_20260102033934480334",
+        "name": "MISFILL BODY",
+        "source": "韓國婆",
+        "is_genuine": false,
+        "price": 203.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:39"
+      },
+      {
+        "id": "mounjaro_g_20260102034009118735",
+        "name": "MOUNJARO 2.5mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 368.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:40"
+      },
+      {
+        "id": "mounjaro_5mg_g_20260102034034585339",
+        "name": "MOUNJARO 5mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 618.4,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:40"
+      },
+      {
+        "id": "mounjaro_7.5mg_g_20260102034045208410",
+        "name": "MOUNJARO 7.5mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 693.2,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:40"
+      },
+      {
+        "id": "mounjaro_10mg_g_20260102034055302701",
+        "name": "MOUNJARO 10mg",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1096.7,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:40"
       }
     ],
-    "肉毒": [],
-    "生髮": []
+    "肉毒": [
+      {
+        "id": "botox_ng_20260102034143800860",
+        "name": "BOTOX",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1992.3,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:41"
+      },
+      {
+        "id": "siax_ng_20260102034152168619",
+        "name": "SIAX",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 707.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:41"
+      },
+      {
+        "id": "dysport_g_20260102034204050486",
+        "name": "DYSPORT",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 2159.6,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:42"
+      },
+      {
+        "id": "xeomin_g_20260102034214923007",
+        "name": "XEOMIN",
+        "source": "香港代理",
+        "is_genuine": true,
+        "price": 1249.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:42"
+      }
+    ],
+    "生髮": [
+      {
+        "id": "haircare_ng_20260102034121279913",
+        "name": "HAIRCARE",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 175.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:41"
+      },
+      {
+        "id": "prct_ng_20260102034130626901",
+        "name": "PRCT",
+        "source": "水貨",
+        "is_genuine": false,
+        "price": 250.0,
+        "unit": "per 支",
+        "date_added": "2026-01-02 03:41"
+      }
+    ]
   },
   "sources": [
-    "Medical Supply Co",
-    "Pharma Corp",
-    "Local Supplier",
-    "Global Med",
-    "SINOPHARM"
+    "香港代理",
+    "SINOPHARM",
+    "LUKE",
+    "韓國婆",
+    "中國香港",
+    "台灣",
+    "水貨",
+    "DR YAU"
   ],
   "users": {
     "admin": "admin123",
